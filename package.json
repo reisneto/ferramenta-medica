@@ -1,0 +1,19 @@
+{
+  "name": "ferramenta-medica",
+  "version": "1.0.0",
+  "description": "Uma plataforma com diversas ferramentas digitais voltadas a ajudar o dia a dia do médico",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^13.4.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
