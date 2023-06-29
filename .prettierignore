@@ -1,5 +1,8 @@
 node_modules
+prisma
 .next
 .husky
 .prettierignore
 .gitignore
+.env-template
+.env
