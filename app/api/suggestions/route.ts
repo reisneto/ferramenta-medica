@@ -4,15 +4,9 @@ import { NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 export async function GET() {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
+    const suggestions = await prisma.suggestion.findMany();
 
-    const data = await response.json();
-
-    return NextResponse.json({ data });
+    return NextResponse.json({ data: suggestions });
 }
 
 export async function POST(request: Request) {
