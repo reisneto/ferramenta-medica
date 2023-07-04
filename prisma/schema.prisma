@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-    provider  = "postgresql"
-    url       = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model User {
@@ -20,5 +20,5 @@ model Suggestion {
     title       String
     description String
     user_email  String
-    likes       Int
+    likes       Int    @default(0)
 }
