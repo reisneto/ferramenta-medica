@@ -1,4 +1,5 @@
 import React from 'react';
+import { roboto } from '../styles/font';
 
 export const metadata = {
     title: 'Next.js',
@@ -7,7 +8,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
+        <html lang="en" className={roboto.className}>
             <body>{children}</body>
         </html>
     );
