@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
         <html lang="en" className={roboto.className}>
             <body>
                 <GlobalStyles />
-                <NextThemeProvider>{children}</NextThemeProvider>
+                <NextThemeProvider mode="light">{children}</NextThemeProvider>
             </body>
         </html>
     );
