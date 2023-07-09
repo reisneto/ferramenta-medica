@@ -1,4 +1,7 @@
 import React from 'react';
+import { roboto } from '../styles/font';
+import { GlobalStyles } from '../styles/globalStyles';
+import NextThemeProvider from '../providers/NextThemeProvider';
 
 export const metadata = {
     title: 'Next.js',
@@ -7,8 +10,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
-            <body>{children}</body>
+        <html lang="en" className={roboto.className}>
+            <body>
+                <GlobalStyles />
+                <NextThemeProvider mode="light">{children}</NextThemeProvider>
+            </body>
         </html>
     );
 }
