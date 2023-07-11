@@ -1,15 +1,10 @@
 'use client';
-import {
-    Button,
-    Paper,
-    TextField,
-    TextareaAutosize,
-    Typography,
-} from '@mui/material';
+import { Button, Paper, TextField, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useRecaptcha } from '../hooks/useRecaptcha';
+import { TextArea } from '../../../@common/ui/components/TextArea';
 
 export const SuggestionForm = () => {
     const recaptchaRef = useRef<ReCAPTCHA>(null);
@@ -25,7 +20,7 @@ export const SuggestionForm = () => {
             <Typography>Que ferramenta você precisa? Por quê?</Typography>
             <FormFields>
                 <TextField label="título" variant="outlined" />
-                <TextareaAutosize
+                <TextArea
                     aria-label="descrição do que precisa"
                     minRows={3}
                     placeholder="escreva aqui..."
@@ -57,12 +52,12 @@ const Container = styled(Paper)`
     @media (min-width: 768px) {
         min-width: 600px;
     }
+    padding: ${(props) => props.theme.spacing(4)};
 `;
 
 const FormFields = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 1rem;
     min-width: 300px;
 `;

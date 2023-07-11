@@ -1,6 +1,6 @@
 import React from 'react';
-import { roboto } from '../styles/font';
-import { GlobalStyles } from '../styles/globalStyles';
+import { roboto } from '../packages/@common/ui/styles/font';
+import { GlobalStyles } from '../packages/@common/ui/styles/globalStyles';
 import NextThemeProvider from '../providers/NextThemeProvider';
 
 export const metadata = {
