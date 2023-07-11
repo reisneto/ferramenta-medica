@@ -8,10 +8,12 @@ import {
 } from '@mui/material';
 import styled from '@emotion/styled';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { useRecaptcha } from '../hooks/useRecaptcha';
 
 export const SuggestionForm = () => {
     const recaptchaRef = useRef<ReCAPTCHA>(null);
+    const { isRobot, handleRecaptchaChange } = useRecaptcha();
 
     const handleSubmit = () => {
         const token = recaptchaRef.current?.getValue();
@@ -31,8 +33,14 @@ export const SuggestionForm = () => {
                 <ReCAPTCHA
                     sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                     ref={recaptchaRef}
+                    hl="pt-BR"
+                    onChange={handleRecaptchaChange}
                 />
-                <Button variant="contained" onClick={handleSubmit}>
+                <Button
+                    variant="contained"
+                    onClick={handleSubmit}
+                    disabled={isRobot}
+                >
                     Enviar
                 </Button>
             </FormFields>
