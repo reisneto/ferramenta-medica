@@ -16,8 +16,10 @@ export const SuggestionForm = () => {
     };
 
     return (
-        <Container elevation={3}>
-            <Typography>Que ferramenta você precisa? Por quê?</Typography>
+        <Container>
+            <Typography variant="h6" component="h2">
+                Que ferramenta você precisa? Por quê?
+            </Typography>
             <FormFields>
                 <TextField label="título" variant="outlined" />
                 <TextArea
@@ -25,11 +27,12 @@ export const SuggestionForm = () => {
                     minRows={3}
                     placeholder="escreva aqui..."
                 />
-                <ReCAPTCHA
+                <Recaptcha
                     sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                     ref={recaptchaRef}
                     hl="pt-BR"
                     onChange={handleRecaptchaChange}
+                    size="normal"
                 />
                 <Button
                     variant="contained"
@@ -43,21 +46,29 @@ export const SuggestionForm = () => {
     );
 };
 
-const Container = styled(Paper)`
+const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    min-width: 300px;
-    @media (min-width: 768px) {
-        min-width: 600px;
-    }
+    width: ${(props) => props.theme.spacing(45)};
+    box-sizing: border-box;
     padding: ${(props) => props.theme.spacing(4)};
+    box-shadow: ${(props) => props.theme.shadows[1]};
+
+    @media (min-width: ${(props) => props.theme.breakpoints.values.md}px) {
+        width: ${(props) => props.theme.spacing(80)};
+    }
 `;
 
 const FormFields = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    min-width: 300px;
+    width: 100%;
+`;
+
+const Recaptcha = styled(ReCAPTCHA)`
+    display: block;
+    margin: 0 auto;
 `;
