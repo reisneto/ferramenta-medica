@@ -1,8 +1,8 @@
 'use client';
 import { ThemeProvider } from '@mui/material/styles';
-import { theme } from '../packages/@common/ui/styles/theme';
+import { theme } from '../styles/theme';
 import { CssBaseline } from '@mui/material';
-import { ThemeMode } from '../packages/@common/ui/styles/types';
+import { ThemeMode } from '../styles/types';
 
 interface Props {
     children: React.ReactNode;

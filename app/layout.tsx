@@ -1,7 +1,7 @@
 import React from 'react';
 import { roboto } from '../packages/@common/ui/styles/font';
 import { GlobalStyles } from '../packages/@common/ui/styles/globalStyles';
-import NextThemeProvider from '../providers/NextThemeProvider';
+import NextThemeProvider from '../packages/@common/ui/providers/NextThemeProvider';
 
 export const metadata = {
     title: 'Next.js',
