@@ -15,7 +15,7 @@ export async function POST(request: Request) {
         data: {
             title: res.title as string,
             description: res.description as string,
-            user_email: res.user_email as string,
+            user_email: (res.user_email as string) ?? '',
         },
     });
     return NextResponse.json({ data: suggestion });
