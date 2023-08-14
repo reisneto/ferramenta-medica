@@ -6,7 +6,6 @@ export const SuggestionBoxPage = () => {
     return (
         <Container>
             <SuggestionForm />
-            <span>list of suggestions</span>
         </Container>
     );
 };
