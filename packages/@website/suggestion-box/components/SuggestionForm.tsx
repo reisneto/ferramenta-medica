@@ -2,12 +2,13 @@
 import { Button, TextField, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useRecaptcha } from '../hooks/useRecaptcha';
 import { TextArea } from '../../../@common/ui/components/TextArea';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Severity, Toast } from '../../../@common/ui/components/Toast';
 
 const suggestionSchema = z.object({
     title: z.string().min(3, { message: 'campo obrigatório' }),
@@ -28,6 +29,7 @@ async function postSuggestion(data: any) {
 
 export const SuggestionForm = () => {
     const recaptchaRef = useRef<ReCAPTCHA>(null);
+    const [open, setOpen] = useState(false);
     const { isRobot, handleRecaptchaChange } = useRecaptcha();
     const {
         register,
@@ -42,6 +44,7 @@ export const SuggestionForm = () => {
         try {
             await postSuggestion(data);
             reset();
+            setOpen(true);
         } catch (error) {
             console.log(error);
         }
@@ -80,6 +83,9 @@ export const SuggestionForm = () => {
                     Enviar
                 </Button>
             </Form>
+            <Toast open={open} setOpen={setOpen} severity={Severity.SUCCESS}>
+                sugestão enviada!
+            </Toast>
         </Container>
     );
 };
