@@ -16,9 +16,9 @@ model User {
 }
 
 model Suggestion {
-    id          String @id @default(uuid())
+    id          String  @id @default(uuid())
     title       String
     description String
-    user_email  String
-    likes       Int    @default(0)
+    user_email  String?
+    likes       Int     @default(0)
 }

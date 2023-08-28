@@ -31,6 +31,7 @@ export const SuggestionForm = () => {
     const { isRobot, handleRecaptchaChange } = useRecaptcha();
     const {
         register,
+        reset,
         handleSubmit,
         formState: { errors },
     } = useForm<SuggestionValidation>({
@@ -40,6 +41,7 @@ export const SuggestionForm = () => {
     const onSubmit = async (data: any) => {
         try {
             await postSuggestion(data);
+            reset();
         } catch (error) {
             console.log(error);
         }
