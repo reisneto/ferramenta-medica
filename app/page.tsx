@@ -1,7 +1,8 @@
 import React from 'react';
+import { SuggestionBoxPage } from '../packages/@website/suggestion-box/pages/SuggestionBoxPage';
 
 function Page() {
-    return <h1>Ferramentas Médicas (Em Construção)</h1>;
+    return <SuggestionBoxPage />;
 }
 
 export default Page;
