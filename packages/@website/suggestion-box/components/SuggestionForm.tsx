@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Severity, Toast } from '../../../@common/ui/components/Toast';
+import { useSuggestion } from '../hooks/useSuggestion';
 
 const suggestionSchema = z.object({
     title: z.string().min(3, { message: 'campo obrigatório' }),
@@ -17,19 +18,11 @@ const suggestionSchema = z.object({
 
 type SuggestionValidation = z.infer<typeof suggestionSchema>;
 
-async function postSuggestion(data: any) {
-    const response = await fetch('/api/suggestions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
-}
-
 export const SuggestionForm = () => {
     const recaptchaRef = useRef<ReCAPTCHA>(null);
     const [open, setOpen] = useState(false);
+    const [toastData, setToastData] = useState<any>();
+    const { postSuggestion, loading: loadingSuggestionPost } = useSuggestion();
     const { isRobot, handleRecaptchaChange } = useRecaptcha();
     const {
         register,
@@ -44,10 +37,17 @@ export const SuggestionForm = () => {
         try {
             await postSuggestion(data);
             reset();
-            setOpen(true);
+            setToastData({
+                type: Severity.SUCCESS,
+                message: 'sugestão enviada!',
+            });
         } catch (error) {
-            console.log(error);
+            setToastData({
+                type: Severity.WARNING,
+                message: 'não foi possível enviar sugestão',
+            });
         }
+        setOpen(true);
     };
 
     return (
@@ -79,12 +79,16 @@ export const SuggestionForm = () => {
                     onChange={handleRecaptchaChange}
                     size="normal"
                 />
-                <Button variant="contained" disabled={isRobot} type="submit">
+                <Button
+                    variant="contained"
+                    disabled={isRobot || loadingSuggestionPost}
+                    type="submit"
+                >
                     Enviar
                 </Button>
             </Form>
-            <Toast open={open} setOpen={setOpen} severity={Severity.SUCCESS}>
-                sugestão enviada!
+            <Toast open={open} setOpen={setOpen} severity={toastData?.type}>
+                {toastData?.message}
             </Toast>
         </Container>
     );
