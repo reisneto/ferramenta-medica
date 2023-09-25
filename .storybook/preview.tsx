@@ -1,17 +1,9 @@
-import React from 'react';
 import type { Preview } from '@storybook/react';
 import { GlobalStyles } from '../packages/@common/ui/styles/globalStyles';
+import NextThemeProvider from '../packages/@common/ui/providers/NextThemeProvider';
+import React from 'react';
 
 const preview: Preview = {
-    decorators: [
-        (Story) => (
-            <div>
-                {/* 👇 Decorators in Storybook also accept a function. Replace <Story/> with Story() to enable it  */}
-                <GlobalStyles />
-                <Story />
-            </div>
-        ),
-    ],
     parameters: {
         actions: { argTypesRegex: '^on[A-Z].*' },
         controls: {
@@ -21,6 +13,16 @@ const preview: Preview = {
             },
         },
     },
+    decorators: [
+        (Story) => (
+            <div>
+                <GlobalStyles />
+                <NextThemeProvider mode="light">
+                    <Story />
+                </NextThemeProvider>
+            </div>
+        ),
+    ],
 };
 
 export default preview;
