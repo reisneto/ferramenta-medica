@@ -15,8 +15,8 @@ export const SuggestionList: React.FC = () => {
 
     const suggestions = use(
         queryClient('suggestions', () =>
-            fetch('http://localhost:3000/api/suggestions').then((res) =>
-                res.json(),
+            fetch(`${process.env.NEXT_PUBLIC_URL}/api/suggestions`).then(
+                (res) => res.json(),
             ),
         ),
     ) as { data: Suggestion[] };
