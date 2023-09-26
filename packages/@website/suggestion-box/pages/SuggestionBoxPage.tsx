@@ -1,11 +1,13 @@
 'use client';
 import styled from '@emotion/styled';
 import { SuggestionForm } from '../components/SuggestionForm';
+import { SuggestionList } from '../components/SuggestionList';
 
 export const SuggestionBoxPage = () => {
     return (
         <Container>
             <SuggestionForm />
+            <SuggestionList />
         </Container>
     );
 };
