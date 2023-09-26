@@ -1,11 +1,18 @@
+'use client';
 import styled from '@emotion/styled';
 import { SuggestionCard } from './SuggestionCard';
-import { use } from 'react';
+import { use, useEffect, useState } from 'react';
 import { Suggestion } from '../types/Suggestion';
 import { queryClient } from '../../../@common/ui/utils/queryClient';
-import { Typography } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 
 export const SuggestionList: React.FC = () => {
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
     const suggestions = use(
         queryClient('suggestions', () =>
             fetch('http://localhost:3000/api/suggestions').then((res) =>
@@ -17,11 +24,15 @@ export const SuggestionList: React.FC = () => {
     return (
         <Container>
             <Typography variant="h2">Sugestões</Typography>
-            <ContainerList>
-                {suggestions?.data.map((suggestion, index) => (
-                    <SuggestionCard key={index} suggestion={suggestion} />
-                ))}
-            </ContainerList>
+            {isClient ? (
+                <ContainerList>
+                    {suggestions?.data.map((suggestion, index) => (
+                        <SuggestionCard key={index} suggestion={suggestion} />
+                    ))}
+                </ContainerList>
+            ) : (
+                <CircularProgress />
+            )}
         </Container>
     );
 };

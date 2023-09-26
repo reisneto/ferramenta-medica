@@ -19,7 +19,12 @@ export const theme = (mode: ThemeMode) => {
                 fontSize: 32,
             },
             h2: {
+                fontSize: 32,
+                color: 'rgba(0,0,0,.8)',
+            },
+            h3: {
                 fontSize: 24,
+                color: 'rgba(0,0,0,.7)',
             },
             body1: {
                 fontSize: 16,

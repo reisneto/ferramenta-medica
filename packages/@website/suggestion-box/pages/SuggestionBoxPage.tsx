@@ -18,4 +18,5 @@ const Container = styled.div`
     align-items: center;
     width: 100%;
     padding: ${(props) => props.theme.spacing(3)};
+    gap: 24px;
 `;

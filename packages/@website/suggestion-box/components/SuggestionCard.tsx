@@ -15,9 +15,9 @@ type Props = {
 export const SuggestionCard: React.FC<Props> = (props) => {
     return (
         <Container elevation={1}>
-            <Typography variant="h2">{props.suggestion.title}</Typography>
+            <Typography variant="h3">{props.suggestion.title}</Typography>
             <TextBody variant="body1">{props.suggestion.description}</TextBody>
-            <Typography variant="body1">❤️ {props.suggestion.likes}</Typography>
+            <Likes variant="body1">❤️ {props.suggestion.likes}</Likes>
         </Container>
     );
 };
@@ -36,4 +36,11 @@ const Container = styled(Paper)`
 const TextBody = styled(Typography)`
     text-align: justify;
     color: ${(props) => props.theme.palette.text.secondary};
+`;
+
+const Likes = styled(Typography)`
+    &:hover {
+        opacity: 0.8;
+        cursor: pointer;
+    }
 `;
