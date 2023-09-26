@@ -2,18 +2,22 @@ import styled from '@emotion/styled';
 import { Paper, Typography } from '@mui/material';
 import React from 'react';
 
-export const SuggestionCard: React.FC = (props: any) => {
+interface Suggestion {
+    title: string;
+    description: string;
+    likes: number;
+}
+
+type Props = {
+    suggestion: Suggestion;
+};
+
+export const SuggestionCard: React.FC<Props> = (props) => {
     return (
         <Container elevation={1}>
-            <Typography variant="h2">Formulário TC6M</Typography>
-            <TextBody variant="body1">
-                O teste médico TC6M avalia a capacidade funcional e tolerância
-                ao esforço em pacientes com doenças respiratórias,
-                cardiovasculares ou neuromusculares, por meio de uma caminhada
-                de 6 minutos. É usado para monitorar a progressão da doença e
-                ajustar o tratamento.
-            </TextBody>
-            <Typography variant="body1">❤️ 87</Typography>
+            <Typography variant="h2">{props.suggestion.title}</Typography>
+            <TextBody variant="body1">{props.suggestion.description}</TextBody>
+            <Typography variant="body1">❤️ {props.suggestion.likes}</Typography>
         </Container>
     );
 };
