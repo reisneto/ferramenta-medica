@@ -18,10 +18,15 @@ const suggestionSchema = z.object({
 
 type SuggestionValidation = z.infer<typeof suggestionSchema>;
 
+type ToastType = {
+    type: Severity;
+    message: string;
+};
+
 export const SuggestionForm = () => {
     const recaptchaRef = useRef<ReCAPTCHA>(null);
     const [open, setOpen] = useState(false);
-    const [toastData, setToastData] = useState<any>();
+    const [toastData, setToastData] = useState<ToastType>();
     const { postSuggestion, loading: loadingSuggestionPost } = useSuggestion();
     const { isRobot, handleRecaptchaChange } = useRecaptcha();
     const {
