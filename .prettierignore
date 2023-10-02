@@ -6,3 +6,4 @@ prisma
 .gitignore
 .env-template
 .env
+.github
